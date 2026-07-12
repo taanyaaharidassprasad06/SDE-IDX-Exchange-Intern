@@ -30,4 +30,17 @@ if(process.env.NODE_ENV !== "test") {
     });
 }
 
+app.use((request, response, next) => {
+    const start = Date.now();
+
+    response.on("finish", () => {
+        const end = Date.now();
+        const duration = end - start;
+
+        console.log(`${request.method} ${request.originalUrl} ${new Date(end).toISOString()} | Status: ${response.statusCode} | Duration: ${duration}ms`);
+    });
+    
+    next();
+});
+
 module.exports = app;
