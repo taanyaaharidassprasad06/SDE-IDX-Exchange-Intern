@@ -92,14 +92,14 @@ router.get("/", async (request, response) => {
         // get paginated rows matching filters
         const allRowsSQL = "SELECT * FROM rets_property" + whereClause + " LIMIT ? OFFSET ?";
         const allRowsValues = [...values, limit, offset];
-        const [rows] = await pool.query(allRowsSQL, allRowsValues);
+        const [rows] = await pool.query(allRowsSQL, allRowsValues); // execute sql query by replacing ? with the actual values
 
         // get total number of rows matching filters (without LIMIT/OFFSET)
         const totalCountSQL = "SELECT COUNT(*) AS total FROM rets_property" + whereClause;
         const [countResult] = await pool.query(totalCountSQL, values);
         const total = countResult[0].total;
 
-        response.json({
+        return response.json({
             total,
             limit,
             offset,
@@ -107,8 +107,66 @@ router.get("/", async (request, response) => {
         });
     } catch(error) {
         console.log(error.message);
-        response.status(500).json({ status: "error", message: "failed to fetch properties" });
+        return response.status(500).json({ status: "error", message: "Failed to fetch properties" });
     }
 });
+
+router.get("/:id/openhouses", async (request, response) => {
+    const id = request.params.id;
+
+    if(isInvalidListingId(id)) {
+        return response.status(400).json({ status: "error", message: "Invalid listing ID" });
+    }
+
+    try {
+        const property = await getPropertyById(id);
+
+        if(!property) {
+            return response.status(404).json({ status: "error", message: "Property not found" });
+        }
+
+        const openHouseSql = "SELECT * FROM rets_openhouse WHERE L_ListingID = ? ORDER BY OpenHouseDate, OH_StartTime";
+        const [openHouseRows] = await pool.query(openHouseSql, [id]);
+
+        return response.json(openHouseRows);
+
+    } catch (error) {
+        console.log(error.message)
+        return response.status(500).json({ status: "error", message: "Failed to open houses" });
+    }
+});
+
+router.get("/:id", async (request, response) => {
+    const id = request.params.id;
+    
+    if(isInvalidListingId(id)) {
+        return response.status(400).json({ status: "error", message: "Invalid listing ID" });
+    }
+
+    try {
+        const property = await getPropertyById(id);
+
+        if(!property) {
+            return response.status(404).json({ status: "error", message: "Property not found" });
+        }
+
+        return response.json(property); 
+
+    } catch (error) {
+        console.log(error.message)
+        return response.status(500).json({ status: "error", message: "Failed to fetch properties" });
+    }
+});
+
+function isInvalidListingId(id) {
+    return !id || id.trim() === "" || id.length > 255;
+}
+
+async function getPropertyById(id) {
+    const sql = "SELECT * FROM rets_property WHERE L_ListingID = ?";
+    const [rows] = await pool.query(sql, [id]);
+
+    return rows[0]; // returns the first (and only) property object 
+}
 
 module.exports = router;
