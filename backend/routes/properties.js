@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../db");
 
+// MULTIPLE PROPERTIES
 router.get("/", async (request, response) => {
     
     /*
@@ -111,6 +112,7 @@ router.get("/", async (request, response) => {
     }
 });
 
+// ONE PROPERTY OPEN HOUSE 
 router.get("/:id/openhouses", async (request, response) => {
     const id = request.params.id;
 
@@ -136,6 +138,7 @@ router.get("/:id/openhouses", async (request, response) => {
     }
 });
 
+// ONE PROPERTY
 router.get("/:id", async (request, response) => {
     const id = request.params.id;
     
