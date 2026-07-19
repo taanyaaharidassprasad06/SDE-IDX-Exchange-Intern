@@ -28,7 +28,7 @@ function PropertyCard({ property }) {
             </div>
             <div className="property-logistics-container">
                 <div className="property-logistics">
-                    <h3>{property.L_SystemPrice}</h3>
+                    <h3>${property.L_SystemPrice}</h3>
                     <div className="location">
                         <h5>{property.L_Address}</h5>
                         <p className="city-state">{cityState}</p>
@@ -42,7 +42,7 @@ function PropertyCard({ property }) {
                         <p>{property.LM_Dec_3} bath</p>
                     </div>
                     <div className="interior">
-                        <p>{property.LotSizeSquareFeet} sqft</p>
+                        <p>{property.LM_Int2_3} sqft</p>
                     </div>
                 </div>
             </div>
