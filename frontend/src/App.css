@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 
+:root {
+    --primary: #9BD9E8;
+    --secondary: #1E7A93;
+    --teritiary: #66C0D6;
+    --highlight: #EEF9FC;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -13,11 +20,29 @@
     font-family: 'IBM Plex Sans', sans-serif;
 }
 
+.heading {
+    margin-bottom: 50px;
+}
+
+.mls {
+    text-decoration: underline;
+    text-underline-offset: 15px;
+    text-decoration-thickness: 5px;
+    text-decoration-color: var(--teritiary);
+}
+
 .listings-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 50px;
+    margin-top: 30px;
 }
+
+/*  
+-------------------------------------
+|       PROPERTY CARD STYLES        |
+-------------------------------------
+*/
 
 .property-card {
     border-radius: 10px;
@@ -37,7 +62,7 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    background-color: rgb(238, 238, 238);
+    background-color: #eeeeee;
     font-style: italic;
 }
 
@@ -45,12 +70,23 @@
     width: 100%;
     aspect-ratio: 5 / 3;
     overflow: hidden;
+    position: relative;
 }
 
 .property-img {
     width: 100%;
     height: 100%;
     object-fit: cover; /* prevent image from shrinking */
+}
+
+.price-overlay {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
 .property-logistics-container {
@@ -82,7 +118,8 @@
 
 .interior {
     font-size: 0.8rem;
-    background-color: rgb(245, 245, 245);
+    background-color: var(--highlight);
+    color: var(--secondary);
     padding: 8px 10px;
     border-radius: 10px;
 }
@@ -96,5 +133,168 @@
 @media(max-width: 768px) {
     .listings-grid {
         grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* 
+-------------------------------------
+|      PROPERTY FILTER STYLES       |
+-------------------------------------
+*/
+
+.menu {
+    display: none;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1001;
+    color: var(--secondary);
+    background-color: transparent;
+    border: none;
+    font-size: 1.3rem;
+    color: var(--secondary);
+}
+
+.form-container {
+    margin-bottom: 50px;
+}
+
+.form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px 0;
+    border: 0.5px solid black;
+    padding-left: 10px;
+    background-color: var(--highlight);
+}
+
+.filter-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #b8b8b8;
+    padding: 12px 15px;
+}
+
+.label {
+    font-size: 0.6rem;
+    font-weight: bold;
+    color: var(--secondary);
+    margin-bottom: 5px;
+}
+
+.field {
+    border: none;
+    font-size: 0.8rem;
+    background-color: var(--highlight);
+    color: #757575;
+}
+
+.field:focus {
+    outline: none;
+}
+
+.clear-btn, .submit-btn {
+    height: 100%;
+    padding: 0 40px;
+    font-weight: bold;
+}
+
+.clear-btn {
+    background-color: transparent;
+    border: none;
+    color: #757575;
+}
+
+.clear-btn:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.submit-btn {
+    background-color: var(--primary);
+    border: transparent;
+    color: black;
+}
+
+.submit-btn:hover {
+    background-color: var(--teritiary);
+    cursor: pointer;
+}
+
+@media(max-width: 1024px) {
+    .form-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 220px;
+        z-index: 1000;
+        background-color: var(--highlight);
+        transform: translateX(-100%); /* move left by element's own width */
+        transition: transform 0.3s ease;
+    }
+
+    .form-container.open {
+        transform: translateX(0); /* move back to normal position */
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    .form {
+        flex-direction: column;
+        border: none;
+        gap: 80px;
+        padding-top: 50px;
+        padding-left: 0;
+    }
+    
+    .filter-form {
+        flex-direction: column;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+        gap: 20px;
+    }
+    
+    .filter {
+        border-right: none;
+        padding-left: 30px;
+    }
+    
+    .form-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .clear-btn {
+        border: 1px solid var(--secondary);
+        padding: 10px;
+        width: 100px;
+    }
+
+    .submit-btn {
+        padding: 10px;
+        width: 100px;
     }
 }

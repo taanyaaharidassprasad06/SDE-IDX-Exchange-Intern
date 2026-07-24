@@ -25,10 +25,10 @@ function PropertyCard({ property }) {
         <div className="property-card">
             <div className="property-img-container">
                 {image ? <img className="property-img" src={image} alt={property.L_Address}/> : <div className="no-img">No image to display</div>}
+                <h3 className="price-overlay">${property.L_SystemPrice}</h3>
             </div>
             <div className="property-logistics-container">
                 <div className="property-logistics">
-                    <h3>${property.L_SystemPrice}</h3>
                     <div className="location">
                         <h5>{property.L_Address}</h5>
                         <p className="city-state">{cityState}</p>
