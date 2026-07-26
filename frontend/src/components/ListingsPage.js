@@ -79,11 +79,11 @@ function ListingsPage() {
 
     return (
         <div>
+            <PropertyFilters onSearch={handleSearch}/>
             {loading && <p>Loading properties...</p>}
             {error && <p>{error}</p>}
             {(!loading && !error) && 
             <div>
-                <PropertyFilters onSearch={handleSearch}/>
                 {properties.length === 0 ? <p>No properties found.</p> : 
                 <p>Showing {properties.length} of {total} properties</p>}
                 <div className="listings-grid">

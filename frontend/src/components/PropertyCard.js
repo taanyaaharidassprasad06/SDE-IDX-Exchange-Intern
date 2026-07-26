@@ -1,3 +1,5 @@
+import formatPrice from "../utils/formatPrice";
+
 function PropertyCard({ property }) {
     const cityState = `${property.L_City}, ${property.L_State}` ;
     let propertyImages = []
@@ -25,7 +27,7 @@ function PropertyCard({ property }) {
         <div className="property-card">
             <div className="property-img-container">
                 {image ? <img className="property-img" src={image} alt={property.L_Address}/> : <div className="no-img">No image to display</div>}
-                <h3 className="price-overlay">${property.L_SystemPrice}</h3>
+                <h3 className="price-overlay">{formatPrice(property.L_SystemPrice)}</h3>
             </div>
             <div className="property-logistics-container">
                 <div className="property-logistics">
