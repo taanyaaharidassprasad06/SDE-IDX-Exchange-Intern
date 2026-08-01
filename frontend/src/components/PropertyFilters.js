@@ -32,7 +32,7 @@ function PropertyFilters({ onSearch }) {
     return (
         <>
             <button onClick={() => setIsOpen(!isOpen)} className="menu">☰</button>
-            {isOpen && <div className="overlay"></div>}
+            {isOpen && <div onClick={() => setIsOpen(!isOpen)} className="overlay"></div>}
             <div className={`form-container ${isOpen ? "open" : ""}`}>
                 <form onSubmit={handleSubmit} className="form">
                     <div className="filter-form">
