@@ -1,8 +1,11 @@
 import formatPrice from "../utils/formatPrice";
+import { useNavigate } from "react-router-dom";
+import PropertyImageCarousel from "./PropertyImageCarousel";
 
 function PropertyCard({ property }) {
+    const navigate = useNavigate();
     const cityState = `${property.L_City}, ${property.L_State}` ;
-    let propertyImages = []
+    let propertyImages = [];
     let image = "";
     
     try {
@@ -24,9 +27,9 @@ function PropertyCard({ property }) {
     }
 
     return (
-        <div className="property-card">
+        <div className="property-card" onClick={() => navigate(`/property/${property.L_ListingID}`)}>
             <div className="property-img-container">
-                {image ? <img className="property-img" src={image} alt={property.L_Address}/> : <div className="no-img">No image to display</div>}
+                {image ? <PropertyImageCarousel photos={propertyImages}/> : <div className="no-img">No image to display</div>}
                 <h3 className="price-overlay">{formatPrice(property.L_SystemPrice)}</h3>
             </div>
             <div className="property-logistics-container">
