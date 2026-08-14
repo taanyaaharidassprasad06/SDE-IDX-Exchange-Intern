@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { fetchProperties } from "../api/client";
 import PropertyCard from "./PropertyCard";
 import PropertyFilters from "./PropertyFilters";
 import Pagination from "./Pagination";
 
 function ListingsPage() {
+    const navigate = useNavigate();
 
     const [properties, setProperties] = useState([]);
     const [filters, setFilters] = useState({});
@@ -14,7 +16,7 @@ function ListingsPage() {
     const [error, setError] = useState(null);
 
     const[currentPage, setCurrentPage] = useState(1);
-    const[itemsPerPage, setItemsPerPage] = useState(20);
+    const itemsPerPage = 20;
     
     const offset = (currentPage - 1) * itemsPerPage;
     const startItem = offset + 1;
@@ -62,7 +64,7 @@ function ListingsPage() {
         }
 
         loadProperties();
-    }, [currentPage, itemsPerPage, filters]);
+    }, [currentPage, itemsPerPage, filters, offset]);
 
     function handlePageChange(page) {
         setCurrentPage(page);
@@ -80,6 +82,7 @@ function ListingsPage() {
 
     return (
         <div>
+            <button onClick={() => navigate('/favorites')}>Favorites</button>
             <PropertyFilters onSearch={handleSearch}/>
             {loading && <p>Loading properties...</p>}
             {error && <p>{error}</p>}
@@ -89,7 +92,7 @@ function ListingsPage() {
                 <p>Showing {startItem}-{endItem} of {total} properties</p>}
                 <div className="listings-grid">
                     {properties.map((property, i) => (
-                        <PropertyCard key={i} property={property}/>
+                        <PropertyCard key={property.L_ListingID} property={property}/>
                     ))}
                 </div>
                 <Pagination currentPage={currentPage} itemsPerPage={itemsPerPage} total={total} onPageChange={handlePageChange}/>

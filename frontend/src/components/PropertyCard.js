@@ -1,10 +1,16 @@
 import formatPrice from "../utils/formatPrice";
 import { useNavigate } from "react-router-dom";
 import PropertyImageCarousel from "./PropertyImageCarousel";
+import useFavorites from "../hooks/useFavorites";
+import heartEmpty from "../assets/heartEmpty.png";
+import heartFilled from "../assets/heartFilled.png";
 
 function PropertyCard({ property }) {
     const navigate = useNavigate();
-    const cityState = `${property.L_City}, ${property.L_State}` ;
+    const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+    const favorite = isFavorite(property.L_ListingID);
+
+    const cityState = `${property.L_City}, ${property.L_State}`;
     let propertyImages = [];
     let image = "";
     
@@ -26,10 +32,21 @@ function PropertyCard({ property }) {
         console.log(`Invalid photo data for ${property.L_ListingID}`);
     }
 
+    function handleFavorite(e) {
+        e.stopPropagation();
+
+        if(favorite) {
+            removeFavorite(property.L_ListingID);
+        } else {
+            addFavorite(property);
+        }
+    }
+
     return (
         <div className="property-card" onClick={() => navigate(`/property/${property.L_ListingID}`)}>
             <div className="property-img-container">
                 {image ? <PropertyImageCarousel photos={propertyImages}/> : <div className="no-img">No image to display</div>}
+                <button className="fav-btn" onClick={(e) => handleFavorite(e)}>{favorite ? <img src={heartFilled} alt="remove from favorites"/> : <img src={heartEmpty} alt="add to favorites"/>}</button>
                 <h3 className="price-overlay">{formatPrice(property.L_SystemPrice)}</h3>
             </div>
             <div className="property-logistics-container">
