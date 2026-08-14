@@ -11,6 +11,20 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+
+app.use((request, response, next) => {
+    const start = Date.now();
+
+    response.on("finish", () => {
+        const end = Date.now();
+        const duration = end - start;
+
+        console.log(`${request.method} ${request.originalUrl} ${new Date(end).toISOString()} | Status: ${response.statusCode} | Duration: ${duration}ms`);
+    });
+    
+    next();
+});
+
 app.use("/api/properties", propertiesRouter);
 
 // health check to confirm server and database are working
@@ -29,18 +43,5 @@ if(process.env.NODE_ENV !== "test") {
         console.log(`Server running on port http://localhost:${PORT}`);
     });
 }
-
-app.use((request, response, next) => {
-    const start = Date.now();
-
-    response.on("finish", () => {
-        const end = Date.now();
-        const duration = end - start;
-
-        console.log(`${request.method} ${request.originalUrl} ${new Date(end).toISOString()} | Status: ${response.statusCode} | Duration: ${duration}ms`);
-    });
-    
-    next();
-});
 
 module.exports = app;
