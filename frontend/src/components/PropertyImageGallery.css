@@ -1,0 +1,77 @@
+.property-gallery {
+    width: 100%;
+    /* the gallery is a grid item and grid items default to min-width: auto 
+    which can prevent them from shrinking below their content's size.
+    setting this to 0 lets the gallery shrink with the grid column */
+    min-width: 0;
+}
+
+.gallery-main-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.thumbnail-strip {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    overflow-x: auto;
+}
+
+.gallery-thumbnail {
+    width: 100px;
+    height: 70px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.image-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    border: none;
+    padding: 0;
+    background: transparent;
+}
+
+.image-modal::backdrop {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.image-modal img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.modal-arrow {
+    position: absolute;
+    top: 50%; 
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 27px;
+    height: 27px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(252, 252, 252, 0.85);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.modal-arrow:hover {
+    background-color: #f5f5f5;
+}
+
+.modal-arrow-left {
+    left: 10px;
+}
+
+.modal-arrow-right {
+    right: 10px;
+}

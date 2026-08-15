@@ -1,13 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import { fetchProperties } from "../api/client";
 import PropertyCard from "./PropertyCard";
 import PropertyFilters from "./PropertyFilters";
 import Pagination from "./Pagination";
+import './ListingsPage.css';
 
 function ListingsPage() {
-    const navigate = useNavigate();
-
     const [properties, setProperties] = useState([]);
     const [filters, setFilters] = useState({});
     
@@ -82,7 +80,6 @@ function ListingsPage() {
 
     return (
         <div>
-            <button onClick={() => navigate('/favorites')}>Favorites</button>
             <PropertyFilters onSearch={handleSearch}/>
             {loading && <p>Loading properties...</p>}
             {error && <p>{error}</p>}

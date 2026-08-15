@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './PropertyImageCarousel.css';
 
 function PropertyImageCarousel({ photos }) {
     const [currIndex, setCurrIndex] = useState(0); // track which photo is currently being displayed
@@ -30,9 +31,9 @@ function PropertyImageCarousel({ photos }) {
             <img className="property-img" src={photos[currIndex]} alt="property"/>
             {photos.length > 1 && (
                 <div>
-                    <button className="carousel-prev" onClick={previousPhoto}>prev</button>
-                    <button className="carousel-next" onClick={nextPhoto}>next</button>
-                    <p className="carousel-counter">{currIndex + 1} / {photos.length}</p>
+                    <button className="carousel-prev" onClick={previousPhoto}>&lsaquo;</button>
+                    <button className="carousel-next" onClick={nextPhoto}>&rsaquo;</button>
+                    <p className="carousel-counter">{currIndex + 1}/{photos.length}</p>
                 </div>
             )}
         </div>

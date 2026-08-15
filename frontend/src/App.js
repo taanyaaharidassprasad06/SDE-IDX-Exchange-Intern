@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
+import Nav from './components/Nav';
 import ListingsPage from './components/ListingsPage';
 import PropertyDetailPage from './components/PropertyDetailPage';
 import FavoritesView from './components/FavoritesView';
@@ -10,8 +11,8 @@ function App() {
     return (
         <ErrorBoundary>
             <FavoritesProvider>
+                <Nav />
                 <div className="app">
-                    <h1 className="heading"><span className="mls">MLS</span> Property Search</h1>
                     <Routes>
                         <Route path="/" element={<ListingsPage />} />
                         <Route path="/favorites" element={<FavoritesView />} />

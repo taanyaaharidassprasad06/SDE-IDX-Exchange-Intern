@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import './PropertyFilters.css';
 
 function PropertyFilters({ onSearch }) {
     const initialFilters = {
@@ -31,37 +32,37 @@ function PropertyFilters({ onSearch }) {
 
     return (
         <>
-            <button onClick={() => setIsOpen(!isOpen)} className="menu">☰</button>
+            <button onClick={() => setIsOpen(!isOpen)} className={`menu ${isOpen ? "open" : ""}`}>☰</button>
             {isOpen && <div onClick={() => setIsOpen(!isOpen)} className="overlay"></div>}
             <div className={`form-container ${isOpen ? "open" : ""}`}>
                 <form onSubmit={handleSubmit} className="form">
                     <div className="filter-form">
                         <div className="filter">
-                        <label className="label" htmlFor="city">CITY</label>
+                        <label className="label" htmlFor="city">City</label>
                         <input 
                             className="field"
                             id="city"
                             type="text"
                             name="city"
-                            placeholder="Palo Alto"
+                            placeholder="e.g. Portland"
                             value={filters.city}
                             onChange={(e) => setFilters({...filters, city: e.target.value})}
                         />
                         </div>
                         <div className="filter">
-                            <label className="label" htmlFor="zipcode">ZIP</label>
+                            <label className="label" htmlFor="zipcode">ZIP Code</label>
                             <input 
                                 className="field"
                                 id="zipcode"
                                 type="text"
                                 name="zipcode"
-                                placeholder="94301"
+                                placeholder="e.g. 97219"
                                 value={filters.zipcode}
                                 onChange={(e) => setFilters({...filters, zipcode: e.target.value})}
                             />
                         </div>
                         <div className="filter">
-                            <label className="label" htmlFor="minPrice">MIN $</label>
+                            <label className="label" htmlFor="minPrice">Min $</label>
                             <input 
                                 className="field"
                                 id="minPrice"
@@ -73,7 +74,7 @@ function PropertyFilters({ onSearch }) {
                             />
                         </div>
                         <div className="filter">
-                            <label className="label" htmlFor="maxPrice">MAX $</label>
+                            <label className="label" htmlFor="maxPrice">Max $</label>
                             <input 
                                 className="field" 
                                 id="maxPrice"
@@ -85,7 +86,7 @@ function PropertyFilters({ onSearch }) {
                             />
                         </div>
                         <div className="filter">
-                            <label className="label" htmlFor="beds">BEDS</label>
+                            <label className="label" htmlFor="beds">Beds</label>
                             <select 
                                 className="field" 
                                 id="beds" 
@@ -102,7 +103,7 @@ function PropertyFilters({ onSearch }) {
                             </select>
                         </div>
                         <div className="filter">
-                            <label className="label" htmlFor="baths">BATHS</label>
+                            <label className="label" htmlFor="baths">Baths</label>
                             <select 
                                 className="field" 
                                 id="baths"
@@ -119,9 +120,9 @@ function PropertyFilters({ onSearch }) {
                             </select>
                         </div>
                     </div>
-                    <div className="form-btn">
+                    <div className="form-btn-container">
                         <button className="clear-btn" type="button" onClick={handleClear}>Clear Filters</button>
-                        <button className="submit-btn" type="submit">Search</button>
+                        <button className="submit-btn" type="submit">Search Properties</button>
                     </div>
                 </form>
             </div>

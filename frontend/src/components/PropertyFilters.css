@@ -1,0 +1,165 @@
+.menu {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 10px;
+    z-index: 1001;
+    color: var(--secondary);
+    background-color: transparent;
+    border: none;
+    font-size: 1.3rem;
+}
+
+.form-container {
+    margin-bottom: 50px;
+}
+
+.form {
+    margin: 20px 0;
+    padding: 30px;
+    background-color: var(--primary);
+}
+
+.filter-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 0.6rem;
+    font-weight: bold;
+    padding-bottom: 5px;
+    color: var(--secondary);
+}
+
+.field {
+    padding: 10px;
+    border: none;
+    font-size: 0.8rem;
+    background-color: white;
+    color: #757575;
+}
+
+.field:focus {
+    outline: none;
+    color: black;
+}
+
+.form-btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.clear-btn, .submit-btn {
+    padding: 10px 40px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.clear-btn {
+    background-color: transparent;
+    border: none;
+    color: #757575;
+}
+
+.clear-btn:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.submit-btn {
+    background-color: var(--secondary);
+    border: transparent;
+    color: white;
+}
+
+.submit-btn:hover {
+    background-color: var(--teritiary);
+    cursor: pointer;
+}
+
+@media(max-width: 1024px) {
+    .form-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 220px;
+        z-index: 1000;
+        background-color: var(--primary);
+        transform: translateX(-100%); /* move left by element's own width */
+        transition: transform 0.3s ease;
+    }
+
+    .form-container.open {
+        transform: translateX(0); /* move back to normal position */
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    .menu.open {
+        top: 10px;
+    }
+
+    .form {
+        flex-direction: column;
+        border: none;
+        gap: 80px;
+        padding-top: 50px;
+        padding-left: 0;
+    }
+    
+    .filter-form {
+        flex-direction: column;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+        gap: 20px;
+    }
+    
+    .filter {
+        border-right: none;
+        padding-left: 30px;
+    }
+    
+    .form-btn-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .clear-btn {
+        border: 1px solid var(--secondary);
+        padding: 10px;
+        width: 100px;
+    }
+
+    .submit-btn {
+        padding: 10px;
+        width: 100px;
+    }
+}

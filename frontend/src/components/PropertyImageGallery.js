@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import './PropertyImageGallery.css';
 
 function PropertyImageGallery({ photos }) {
     const [currIndex, setCurrIndex] = useState(0);
@@ -90,7 +91,7 @@ function PropertyImageGallery({ photos }) {
                             onClick={showPrev}
                             aria-label="Previous image"
                         >
-                            prev
+                            &lsaquo;
                         </button>
                     )}
                     {photos.length > 1 && (
@@ -100,7 +101,7 @@ function PropertyImageGallery({ photos }) {
                             onClick={showNext}
                             aria-label="Next image"
                         >
-                            next
+                            &rsaquo;
                         </button>
                     )}
                 </div>
