@@ -1,0 +1,58 @@
+.navbar {
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #003985;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    padding: 10px;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo p {
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.nav-btn-container {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.homepage-btn, .favorites-page-btn {
+    padding: 5px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.homepage-btn {
+    background-color: white;
+    color: var(--secondary);
+    border: none;
+}
+
+.homepage-btn:hover {
+    background-color: #f6f7ff;
+    cursor: pointer;
+}
+
+.favorites-page-btn {
+    border: 1px solid white;
+    background-color: transparent;
+    color: white;
+}
+
+.favorites-page-btn:hover {
+    color: #f6f7ff;
+    cursor: pointer;
+}

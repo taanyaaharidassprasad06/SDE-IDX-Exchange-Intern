@@ -1,3 +1,5 @@
+import './Pagination.css';
+
 function Pagination({ currentPage, itemsPerPage, total, onPageChange }) {
     
     const totalPages = Math.ceil(total / itemsPerPage);
@@ -47,7 +49,7 @@ function Pagination({ currentPage, itemsPerPage, total, onPageChange }) {
     
     return (
         <nav className="pagination">
-            <button className="pagination-btn prev-next-btn" onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
+            <button className="pagination-btn prev-next-btn" onClick={() => onPageChange(currentPage - 1)} disabled={currentPage === 1}>&lsaquo;</button>
             {pages.map((page, index) => 
                 page === "..." ? (
                     <span key={index}>...</span>
@@ -55,7 +57,7 @@ function Pagination({ currentPage, itemsPerPage, total, onPageChange }) {
                     <button key={index} className="pagination-btn num-nav-btn" onClick={() => onPageChange(page)} disabled={page === currentPage}>{page}</button>
                 )
             )}
-            <button className="pagination-btn prev-next-btn" onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages}>Next</button>
+            <button className="pagination-btn prev-next-btn" onClick={() => onPageChange(currentPage + 1)} disabled={currentPage === totalPages}>&rsaquo;</button>
         </nav>
     );
 }

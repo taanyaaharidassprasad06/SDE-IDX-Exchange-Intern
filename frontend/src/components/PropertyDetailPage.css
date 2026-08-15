@@ -1,0 +1,168 @@
+.introduction {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    gap: 30px;
+}
+
+.intro-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.listing-id {
+    background-color: #c9d9ff;
+    color: var(--secondary);
+    font-weight: bold;
+    width: fit-content;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.listing-loc {
+    margin-top: 20px;
+}
+
+.listing-price {
+    font-size: 2.5rem;
+}
+
+.listing-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    margin-top: 30px;
+}
+
+.amount {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.category {
+    font-size: 0.8rem;
+}
+
+.fav-btn-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.favorites-btn, .remove-favorites-btn {
+    padding: 15px 40px;
+    border-radius: 5px;
+    font-weight: bold;
+    border: 1px solid var(--secondary);
+}
+
+.favorites-btn {
+    background-color: var(--secondary);
+    color: white;
+}
+
+.favorites-btn:hover {
+    background-color: var(--teritiary);
+    cursor: pointer;
+}
+
+.favorites-btn:disabled {
+    background-color: rgb(188, 188, 188);
+    border: none;
+    cursor: not-allowed;
+}
+
+.remove-favorites-btn {
+    background-color: transparent;
+    color: var(--secondary);
+}
+
+.remove-favorites-btn:hover {
+    color: var(--teritiary);
+    cursor: pointer;
+}
+
+.remove-favorites-btn:disabled {
+    border-color: rgb(188, 188, 188);
+    color: rgb(188, 188, 188);
+    cursor: not-allowed;
+}
+
+.property-more-details-container {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.about-home {
+    margin-bottom: 30px;
+}
+
+.property-more-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.detail-card {
+    background-color: white;
+    padding: 15px;
+    font-size: 0.85rem;
+    border-radius: 5px;
+    border: 0.5px solid rgb(203, 202, 202);
+}
+
+.detail-card-title {
+    font-weight: bold;
+    color: var(--secondary);
+    margin-bottom: 3px;
+}
+
+.detail-card-value {
+    color: rgb(59, 59, 59);
+}
+
+.openhouse {
+    background-color: #c3d7ff;
+    padding: 20px;
+    height: fit-content;
+    border-radius: 8px;
+}
+
+.openhouse-card {
+    border-radius: 5px;
+    background-color: white;
+    font-size: 0.9rem;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.oh-card-date {
+    font-weight: bold;
+}
+
+.oh-card-remarks {
+    color: rgb(89, 89, 89);
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+.map {
+    margin-top: 30px;
+}
+
+.map h2 {
+    margin-bottom: 10px;
+}
+
+@media(max-width: 1024px) {
+    .introduction,
+    .property-more-details-container {
+        grid-template-columns: 1fr;
+    }
+}
