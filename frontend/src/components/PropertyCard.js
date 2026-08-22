@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import formatPrice from "../utils/formatPrice";
 import { useNavigate } from "react-router-dom";
 import PropertyImageCarousel from "./PropertyImageCarousel";
@@ -78,5 +79,12 @@ function PropertyCard({ property }) {
         </div>
     );
 }
+
+// PropTypes: library imported from "prop-types" that provides type validators (object, string, number, etc.)
+// propTypes: property attached to component where rules for props it expects are defined
+
+PropertyCard.propTypes = {
+    property: PropTypes.object.isRequired
+};
 
 export default PropertyCard;
