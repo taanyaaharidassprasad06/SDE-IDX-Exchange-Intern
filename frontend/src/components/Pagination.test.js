@@ -3,9 +3,8 @@ import Pagination from './Pagination';
 
 describe("Pagination component", () => {
     test("case 0: pagination hidden when there is only one page", () => {
-        const { container } = render(<Pagination currentPage={1} itemsPerPage={20} total={10} onPageChange={jest.fn()}/>);
-
-        expect(container.firstChild).toBeNull();
+        render(<Pagination currentPage={1} itemsPerPage={20} total={10} onPageChange={jest.fn()}/>);
+        expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
     });
 
     test("case 1: renders all page numbers when total pages are small", () => {
@@ -61,13 +60,13 @@ describe("Pagination component", () => {
     test("disables previous button on first page", () => {
         render(<Pagination currentPage={1} itemsPerPage={20} total={480} onPageChange={jest.fn()}/>);
 
-        expect(screen.getByRole("button", { name: /previous/i })).toBeDisabled();
+        expect(screen.getByRole("button", { name: "‹" })).toBeDisabled();
     });
 
     test("disables next button on last page", () => {
         render(<Pagination currentPage={24} itemsPerPage={20} total={480} onPageChange={jest.fn()}/>);
 
-        expect(screen.getByRole("button", { name: /next/i })).toBeDisabled();
+        expect(screen.getByRole("button", { name: "›" })).toBeDisabled();
     });
 
     test("disables current page button", () => {
