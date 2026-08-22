@@ -1,9 +1,9 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Nav from './components/Nav';
-import ListingsPage from './components/ListingsPage';
-import PropertyDetailPage from './components/PropertyDetailPage';
-import FavoritesView from './components/FavoritesView';
+import ListingsPage from './pages/ListingsPage';
+import PropertyDetailPage from './pages/PropertyDetailPage';
+import FavoritesView from './pages/FavoritesView';
 import { FavoritesProvider } from './context/FavoritesContext';
 import ErrorBoundary from './components/ErrorBoundary';
 

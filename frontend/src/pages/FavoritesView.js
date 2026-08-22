@@ -1,5 +1,5 @@
 import useFavorites from "../hooks/useFavorites";
-import PropertyCard from "./PropertyCard";
+import PropertyCard from "../components/PropertyCard";
 
 function FavoritesView() {
     const { favorites } = useFavorites();
