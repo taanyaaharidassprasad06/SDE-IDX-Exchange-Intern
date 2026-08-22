@@ -34,7 +34,6 @@ function PropertyCard({ property }) {
     } catch {
         // JSON throws an error if data is invalid
         // Print a message and keep image string as ""
-        console.log(`Invalid photo data for ${property.L_ListingID}`);
     }
 
     function handleFavorite(e) {
