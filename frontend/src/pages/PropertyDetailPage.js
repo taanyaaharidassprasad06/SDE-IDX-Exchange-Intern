@@ -28,7 +28,6 @@ function PropertyDetailPage() {
                     const photos = data.L_Photos ? JSON.parse(data.L_Photos) : []; // parse the JSON photos list or use an empty array if no photos exist
                     setPropertyImages(Array.isArray(photos) ? photos : []); // store photos if the parsed data is an array or use empty array
                 } catch (error) {
-                    console.log(`Invalid photo data for ${data.L_ListingID}`);
                     setPropertyImages([]);
                 }
 
