@@ -2,8 +2,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useFavorites from "../hooks/useFavorites";
 import { fetchPropertyDetails, fetchOpenHouses } from "../api/client";
-import PropertyImageGallery from "./PropertyImageGallery";
-import PropertyMap from "./PropertyMap";
+import PropertyImageGallery from "../components/PropertyImageGallery";
+import PropertyMap from "../components/PropertyMap";
 import './PropertyDetailPage.css';
 
 function PropertyDetailPage() {
