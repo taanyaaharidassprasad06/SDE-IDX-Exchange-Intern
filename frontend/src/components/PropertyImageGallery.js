@@ -51,13 +51,14 @@ function PropertyImageGallery({ photos }) {
     return (
         <div className="property-gallery">
             {/* Main image. Clicking it opens the image modal. */}
-            <img
-                className="gallery-main-img"
-                src={photos[currIndex]}
-                alt="property"
-                onClick={openModal}
-            />
-
+            <div className="gallery-main-img-container">
+                <img
+                    className="gallery-main-img"
+                    src={photos[currIndex]}
+                    alt="property"
+                    onClick={openModal}
+                />
+            </div>
             {/* Thumbnail strip allows the user to select a specific photo */}
             <div className="thumbnail-strip">
                 {photos.map((photo, index) => (
@@ -70,7 +71,6 @@ function PropertyImageGallery({ photos }) {
                     />
                 ))}
             </div>
-
             <dialog
                 ref={dialogRef}
                 className="image-modal"
