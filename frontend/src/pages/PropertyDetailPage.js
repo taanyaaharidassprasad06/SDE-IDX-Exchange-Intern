@@ -2,8 +2,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useFavorites from "../hooks/useFavorites";
 import { fetchPropertyDetails, fetchOpenHouses } from "../api/client";
-import PropertyImageGallery from "./PropertyImageGallery";
-import PropertyMap from "./PropertyMap";
+import PropertyImageGallery from "../components/PropertyImageGallery";
+import PropertyMap from "../components/PropertyMap";
 import './PropertyDetailPage.css';
 
 function PropertyDetailPage() {
@@ -28,7 +28,6 @@ function PropertyDetailPage() {
                     const photos = data.L_Photos ? JSON.parse(data.L_Photos) : []; // parse the JSON photos list or use an empty array if no photos exist
                     setPropertyImages(Array.isArray(photos) ? photos : []); // store photos if the parsed data is an array or use empty array
                 } catch (error) {
-                    console.log(`Invalid photo data for ${data.L_ListingID}`);
                     setPropertyImages([]);
                 }
 
