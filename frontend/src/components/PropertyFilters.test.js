@@ -28,6 +28,36 @@ describe("PropertyFilters component", () => {
         expect(city).toHaveValue("Chicago");
     });
 
+    test("updates all filter inputs", () => {
+        render(<PropertyFilters onSearch={jest.fn()}/>);
+
+        fireEvent.change(screen.getByRole("textbox", { name: /zip/i }), {
+            target: { value: "97219" }
+        });
+
+        fireEvent.change(screen.getByRole("spinbutton", { name: /min/i }), {
+            target: { value: "300000" }
+        });
+
+        fireEvent.change(screen.getByRole("spinbutton", { name: /max/i }), {
+            target: { value: "600000" }
+        });
+
+        fireEvent.change(screen.getByRole("combobox", { name: /beds/i }), {
+            target: { value: "3" }
+        });
+
+        fireEvent.change(screen.getByRole("combobox", { name: /baths/i }), {
+            target: { value: "2" }
+        });
+
+        expect(screen.getByRole("textbox", { name: /zip/i })).toHaveValue("97219");
+        expect(screen.getByRole("spinbutton", { name: /min/i })).toHaveValue(300000);
+        expect(screen.getByRole("spinbutton", { name: /max/i })).toHaveValue(600000);
+        expect(screen.getByRole("combobox", { name: /beds/i })).toHaveValue("3");
+        expect(screen.getByRole("combobox", { name: /baths/i })).toHaveValue("2");
+    });
+
     test("calls onSearch function with filters when form is submitted", () => {
         const mockSearch = jest.fn();
 
@@ -80,5 +110,19 @@ describe("PropertyFilters component", () => {
             beds: "",
             baths: ""
         });
+    });
+
+    test("opens and closes filter menu", () => {
+        render(<PropertyFilters onSearch={jest.fn()}/>);
+
+        const menuButton = screen.getByRole("button", { name: "☰" });
+
+        fireEvent.click(menuButton);
+
+        expect(document.querySelector(".overlay")).toBeInTheDocument();
+
+        fireEvent.click(document.querySelector(".overlay"));
+
+        expect(document.querySelector(".overlay")).not.toBeInTheDocument();
     });
 });
